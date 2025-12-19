@@ -1,0 +1,26 @@
+# Dependency folders
+node_modules/
+
+# Build output
+dist/
+
+# Vite cache
+.vite/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Editor settings (optional)
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS junk files
+Thumbs.db
+.DS_Store

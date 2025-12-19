@@ -1,0 +1,56 @@
+@import "tailwindcss";
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); */
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.hamburger .lines {
+    /* transform: matrix(1, 0, 0, 1, 0, 0); */
+    display: inline-block;
+    /* position: relative; */
+    /* left: 30px; */
+    height: 2px;
+    background: #F7F7F7;
+    transform: translateX(-50px);
+    /* transition-timing-function: linear; */
+}
+
+.floating-bar {
+    animation: crousal 20s linear infinite;
+}
+
+@media (max-width:769px) {
+    .floating-bar {
+        animation-duration: 13s;
+    }
+}
+
+@media (max-width:440px) {
+    .floating-bar {
+        animation-duration: 7s;
+    }
+}
+
+@keyframes crousal {
+    0% {
+        transform: translateX(0)
+    }
+
+    100% {
+        transform: translateX(-270%)
+    }
+}
+
+@utility mobile-screen-logo {
+    @apply h-[110px] w-[110px] rounded-br-[45px] rounded-tl-[45px] rounded-bl-[10px] rounded-tr-[10px];
+}
+
+@utility small-logo {
+    @apply h-[55px] w-[55px] rounded-br-[20px] rounded-tl-[20px] rounded-bl-[5px] rounded-tr-[5px];
+}
+
+@utility h1 {
+    @apply font-bold lg:text-[100px] text-[30px] sm:text-[70px] text-[#535353] sm:leading-[200px] font-[Arial];
+}
