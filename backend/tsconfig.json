@@ -5,14 +5,9 @@
         "moduleResolution": "NodeNext",
         "strict": true,
         "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
         "outDir": "dist",
-        "rootDir": "src",
-        "typeRoots": [
-            "./node_modules/@types",
-            "./src/types"
-        ]
+        "rootDir": "src"
     },
     "include": [
         "src"

@@ -1,10 +1,11 @@
 import type { NextFunction, Request, Response } from "express";
 import { Router } from "express";
-import { db } from '../db.ts'
+// import { db } from '../db'
+import { db } from "../db.js";
 import { eq } from "drizzle-orm";
-import { users } from "../schemas/userTable.ts";
+import { users } from "../schemas/userTable.js";
 import bcrypt from 'bcrypt'
-import createAccessToken from "../createAccessToken.ts";
+import createAccessToken from "../createAccessToken.js";
 import Jwt from "jsonwebtoken";
 
 const router = Router()

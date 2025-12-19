@@ -1,6 +1,6 @@
 import express from "express";
 import cors from 'cors'
-import authRouter from './routes/authRouter.ts'
+import authRouter from './routes/authRouter.js'
 import bcrypt from 'bcrypt'
 
 const app = express()

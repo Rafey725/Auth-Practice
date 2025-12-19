@@ -1,0 +1,314 @@
+You don’t need a frontend for this practice project. Not at all.
+You can learn auth properly using just backend + Postman/Thunder Client (or even curl). Frontend can come later.
+Here are the steps you should take, in the exact order, with what you’re trying to learn at each step.
+
+Step 1: Create a tiny “Auth Sandbox” backend project
+Goal: isolate auth learning from quiz complexity.
+You need:
+
+
+Express server
+
+
+Postgres database
+
+
+Drizzle (or raw SQL if you want, but Drizzle is fine)
+
+
+What you learn here:
+
+
+“How a server exposes auth endpoints”
+
+
+“How DB stores users”
+
+
+“How tokens are used to access protected routes”
+
+
+
+Step 2: Create a users table in Postgres
+Minimum columns:
+
+
+id (primary key)
+
+
+email (unique)
+
+
+password_hash
+
+
+created_at
+
+
+What you learn:
+
+
+Why users must have an identity (id)
+
+
+Why email must be unique
+
+
+Why we store hash, not password
+
+
+
+Step 3: Make the Register endpoint
+Endpoint: POST /auth/register
+It should do:
+
+
+Read email and password from body
+
+
+Validate:
+
+
+email exists
+
+
+password exists
+
+
+(basic) password length
+
+
+
+
+Check DB: is email already taken?
+
+
+Hash password using bcrypt
+
+
+Insert user into DB with password_hash
+
+
+Return success
+
+
+What you learn:
+
+
+Signup flow
+
+
+Password hashing concept becomes real
+
+
+
+Step 4: Make the Login endpoint
+Endpoint: POST /auth/login
+It should do:
+
+
+Read email and password
+
+
+Find the user in DB by email
+
+
+Compare password using bcrypt (compare raw password with stored hash)
+
+
+If correct → create JWT
+
+
+Return JWT
+
+
+What you learn:
+
+
+How login is “verification + issuing credential”
+
+
+Why we don’t store passwords
+
+
+How the token becomes your “proof” for next requests
+
+
+
+Step 5: Create Auth Middleware (token verification)
+Middleware: requireAuth
+It should do:
+
+
+Check if request has Authorization header
+
+
+Ensure it starts with Bearer 
+
+
+Extract token
+
+
+Verify token using JWT_SECRET
+
+
+If valid:
+
+
+get user id from token payload
+
+
+attach it to request (like req.user = { id: ... })
+
+
+
+
+If invalid/expired → return 401
+
+
+What you learn:
+
+
+Authentication is checking token validity
+
+
+How server “reconstructs” the user identity per request
+
+
+
+Step 6: Make one protected route
+Example:
+
+
+GET /private
+
+
+Add middleware:
+
+
+GET /private should require auth
+
+
+If token valid → return something like:
+
+
+“You are allowed”
+
+
+plus req.user.id
+
+
+What you learn:
+
+
+Difference between public and protected routes
+
+
+How Bearer token works in practice
+
+
+
+Step 7: Add /auth/me
+Endpoint: GET /auth/me (protected)
+It should:
+
+
+Use middleware to authenticate
+
+
+Fetch user info from DB using req.user.id
+
+
+Return safe fields only (id/email). Never return password hash.
+
+
+What you learn:
+
+
+How apps “restore session” after restart
+
+
+How frontend checks “am I logged in?”
+
+
+
+Step 8: Test everything with Postman/Thunder Client
+Test sequence:
+
+
+Register
+
+
+Login → get token
+
+
+Call /private with token
+
+
+Call /auth/me with token
+
+
+Try wrong token or no token → confirm 401
+
+
+What you learn:
+
+
+Real auth flow end-to-end without any UI distraction
+
+
+
+So do you need a frontend?
+No.
+Frontend is only needed after you understand the backend flow.
+In fact, skipping frontend at first is better because it forces you to understand:
+
+
+headers
+
+
+tokens
+
+
+status codes
+
+
+middleware behavior
+
+
+
+When to add frontend later (the right time)
+After you can do all of this confidently using Postman:
+
+
+register
+
+
+login
+
+
+protected route
+
+
+/me
+
+
+THEN you add frontend and it becomes just:
+
+
+store token
+
+
+send token in requests
+
+
+handle 401 (logout)
+
+
+
+If you want, tell me what you use for testing:
+
+
+Postman, Thunder Client, or curl
+and I’ll give you the exact request steps + headers to test each endpoint properly (no code).
+
