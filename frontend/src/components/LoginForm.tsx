@@ -26,7 +26,6 @@ export function LoginForm() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer 123432',
             },
             body: JSON.stringify({
                 email: email.trim(),
@@ -34,13 +33,20 @@ export function LoginForm() {
             })
         })
         let data = await res.json()
-        // if (data.message.endsWith('exists')) {
-        //     setError(data.message)
-        // } else {
-        //     setError(null)
-        // }
-        console.log(data.message)
+        if (data.message.endsWith('exists')) {
+            setError(data.message)
+        } else {
+            setError(null)
+        }
+
+        if (!res.ok) return
+
+        // Store the access token in local storage
+        localStorage.setItem('Access_Token', data.token)
+
         console.log('Your Token:', data.token);
+
+        console.log(data.message)
 
     }
 
@@ -62,7 +68,7 @@ export function LoginForm() {
                 <label className="mb-1 block text-sm font-medium">Email</label>
                 <input
                     {...register('email', { required: 'Email is required' })}
-                    className="w-full rounded-lg border px-3 py-2 text-sm"
+                    className="w-full rounded-lg border border-white/50 px-3 py-2 text-sm"
                 />
                 {error && <p className="text-red-500 text-sm pl-2">*{error}</p>}
             </div>
@@ -71,7 +77,7 @@ export function LoginForm() {
                 <label className="mb-1 block text-sm font-medium">Password</label>
                 <input
                     {...register('password', { required: 'Password is required' })}
-                    className="w-full rounded-lg border px-3 py-2 text-sm"
+                    className="w-full rounded-lg border border-white/50 px-3 py-2 text-sm"
                 />
             </div>
 

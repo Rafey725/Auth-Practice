@@ -12,10 +12,10 @@ type JwtPayload = {
 }
 
 export default function createAccessToken(payload: JwtPayload) {
-return Jwt.sign(payload, JWT_SECRET_KEY, {
-    algorithm:'HS256',
-    expiresIn:'15m',
-    issuer:'The-app',
-    audience:'My-audience'
-})
+    return Jwt.sign(payload, JWT_SECRET_KEY, {
+        algorithm: 'HS256',
+        expiresIn: '5m',
+        issuer: 'The-app',
+        audience: 'My-audience'
+    })
 }

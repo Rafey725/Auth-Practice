@@ -37,11 +37,11 @@ export function SignupForm() {
             })
         })
         let data = await res.json()
-        if (data.message.endsWith('exists')) {
-            setError(data.message)
-        } else {
-            setError(null)
-        }
+        // if (data.message.endsWith('exists')) {
+        //     setError(data.message)
+        // } else {
+        //     setError(null)
+        // }
         console.log(data.message)
     }
 
@@ -63,7 +63,7 @@ export function SignupForm() {
                 <label className="mb-1 block text-sm font-medium">Full name</label>
                 <input
                     {...register('name', { required: 'Name is required' })}
-                    className="w-full rounded-lg border px-3 py-2 text-sm"
+                    className="w-full rounded-lg border border-white/50 px-3 py-2 text-sm"
                 />
             </div>
 
@@ -71,7 +71,7 @@ export function SignupForm() {
                 <label className="mb-1 block text-sm font-medium">Email</label>
                 <input
                     {...register('email', { required: 'Email is required' })}
-                    className="w-full rounded-lg border px-3 py-2 text-sm"
+                    className="w-full rounded-lg border border-white/50 px-3 py-2 text-sm"
                 />
                 {error && <p className="text-red-500 text-sm pl-2">*{error}</p>}
             </div>
@@ -80,7 +80,7 @@ export function SignupForm() {
                 <label className="mb-1 block text-sm font-medium">Password</label>
                 <input
                     {...register('password', { required: 'Password is required' })}
-                    className="w-full rounded-lg border px-3 py-2 text-sm"
+                    className="w-full rounded-lg border border-white/50 px-3 py-2 text-sm"
                 />
             </div>
 
@@ -90,7 +90,7 @@ export function SignupForm() {
                 </label>
                 <input
                     {...register('confirmPassword', { required: 'Password is required' })}
-                    className="w-full rounded-lg border px-3 py-2 text-sm"
+                    className="w-full rounded-lg border border-white/50 px-3 py-2 text-sm"
                 />
             </div>
 

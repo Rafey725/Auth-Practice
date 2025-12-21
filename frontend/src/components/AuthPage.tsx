@@ -9,8 +9,8 @@ export default function AuthShell() {
     const title = authMode === "login" ? 'Login' : 'Sign Up'
 
     return (
-        <main className="min-h-100 h-full bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50">
-            <div className="mx-auto w-full h-full max-w-6xl px-4 pt-20">
+        <main className="max-h-screen h-full bg-zinc-50 text-zinc-900 dark:bg-black dark:text-zinc-50">
+            <div className="mx-auto w-full h-full px-4 pt-20">
                 <div className="grid items-stretch h-full gap-8 lg:grid-cols-2">
                     {/* Left: Value props */}
                     <section className="hidden lg:block">
